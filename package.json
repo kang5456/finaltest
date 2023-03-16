@@ -1,5 +1,5 @@
 {
-  "name": "initiative",
+  "name": "contentful-blog",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@contentful/rich-text-react-renderer": "^15.16.2",
+    "@contentful/rich-text-react-renderer": "^15.16.3",
     "@next/font": "13.2.4",
     "contentful": "^9.3.3",
     "next": "^13.2.4",

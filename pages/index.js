@@ -1,45 +1,38 @@
-import Head from "next/head";
-import Link from "next/link";
-
-let client = require("contentful").createClient({
-  space: process.env.NEXT_CONTENTFUL_SPACE_ID,
-  accessToken: process.env.NEXT_CONTENTFUL_ACCESS_TOKEN,
-});
+import { createClient } from "contentful";
+import RecipeCard from "../components/RecipeCard";
 
 export async function getStaticProps() {
-  let data = await client.getEntries({
-    content_type: "article",
+  
+  const client = createClient({
+    space: process.env.CONTENTFUL_SPACE_ID,
+    accessToken: process.env.CONTENTFUL_ACCESS_KEY,
   });
+  
+  const res = await client.getEntries({ content_type: "recipe"});
 
   return {
     props: {
-      articles: data.items,
+      recipes: res.items,
     },
-    revalidate: 1,
   };
 }
 
-export default function Home({ articles }) {
-  console.log(articles);
+export default function Recipes({ recipes }) {
+  console.log(recipes);
 
   return (
-    <div>
-      <Head>
-        <title>Blog Test</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className="recipe-list">
+      {recipes.map(recipe => (
+        <RecipeCard key={recipe.sys.id} recipe={recipe}/>
+      ))}
 
-      <main>
-        <ul>
-          {articles.map((article) => (
-            <li key={article.sys.id}>
-              <Link href={"/articles/" + article.fields.slug}>
-                {article.fields.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </main>
+      <style jsx>{`
+      .recipe-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px 60px;
+      }
+      `}</style>
     </div>
   );
 }
