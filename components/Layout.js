@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Navbar from "./Navbar";
 
 export default function Layout({ children }) {
   return (
@@ -6,14 +7,14 @@ export default function Layout({ children }) {
       <header>
         <Link href="/">
           <div>
-            <h1>
+            <h2>
               <span>로고</span>
-              <span>테스트</span>
-            </h1>
-            <h2>메인프레임</h2>
+            </h2>
           </div>
         </Link>
+        <Navbar /> {/* Navbar 컴포넌트를 Layout에 추가 */}
       </header>
+      
 
       <div className="page-content">
         {children}
