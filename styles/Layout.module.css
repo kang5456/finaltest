@@ -1,0 +1,25 @@
+.layout {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .page-content {
+    margin-top: 2rem;
+  }
+  
+  .keen-slider {
+    overflow: hidden;
+  }
+  
+  .keen-slider__slide {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .keen-slider__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
